@@ -1,0 +1,39 @@
+{
+	"name": "bookshop-express",
+	"version": "1.0.0",
+	"description": "A website for but and sale book.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon src/index.ts",
+		"build": "tsc -p ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/avetavos/bookshop-express.git"
+	},
+	"keywords": [
+		"expressjs",
+		"typescript",
+		"pug",
+		"mongodb",
+		"postgresql"
+	],
+	"author": "Phongraphi Ruamtham",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/avetavos/bookshop-express/issues"
+	},
+	"homepage": "https://github.com/avetavos/bookshop-express#readme",
+	"devDependencies": {
+		"@types/express": "^4.17.2",
+		"@types/pug": "^2.0.4",
+		"nodemon": "^2.0.1",
+		"ts-node": "^8.5.4",
+		"typescript": "^3.7.3"
+	},
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"pug": "^2.0.4"
+	}
+}
