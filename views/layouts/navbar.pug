@@ -1,0 +1,45 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand.font-weight-bold(href='/') My Bookshop
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  .collapse.navbar-collapse#navbarSupportedContent
+    ul.navbar-nav
+      li.nav-item
+        a.nav-link(href='#')
+          i.fas.fa-book.mr-2
+          | Shop
+      li.nav-item
+        a.nav-link(href='#') 
+          i.fas.fa-shopping-basket.mr-2
+          | Cart
+      li.nav-item
+        a.nav-link(href='#')
+          i.fas.fa-file-invoice-dollar.mr-2
+          | Orders
+      li.nav-item
+        a.nav-link(href='#') Add Product
+      li.nav-item
+        a.nav-link(href='#') Products
+    form.form-inline.ml-md-2.my-lg-0
+      .input-group
+        input.form-control(type='text' placeholder='Book, Author, Publisher')
+        .input-group-append
+          button.btn.btn-outline-success(type='submit')
+            i.fas.fa-search
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        a.nav-link(href='#')
+          i.fas.fa-sign-in-alt.mr-2
+          | Login
+      li.nav-item
+        a.nav-link(href='#') 
+          i.fas.fa-user-plus.mr-2
+          | Signin
+      li.nav-item
+        a.nav-link(href='#')
+          i.fas.fa-user-alt.mr-2
+          | Profile
+      li.nav-item
+        a.nav-link(href='#')
+          i.fas.fa-sign-out-alt.mr-2
+          | Logout

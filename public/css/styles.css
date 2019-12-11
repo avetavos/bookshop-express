@@ -1,0 +1,5 @@
+@import 'https://bootswatch.com/4/cosmo/bootstrap.min.css';
+
+.bg-opacity-dark {
+	background-color: rgba(55, 58, 60, 0.5);
+}
