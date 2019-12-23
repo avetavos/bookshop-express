@@ -1,16 +1,15 @@
 import bcrypt from 'bcrypt';
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
-import RequestAuth from '../interfaces/requestAuth.interface';
 import UserModel from '../models/user.model';
 import ProfileModel from '../models/profile.model';
 import AuthMiddleware from '../middlewares/auth.middleware';
 import RegisterValidator from '../middlewares/validators/register.validator';
 
 export default class Authentication {
-	public readonly router: Router = Router();
-	private readonly path: string = '/auth';
+	public readonly router = Router();
+	private readonly path = '/auth';
 
 	constructor() {
 		this.router.get(`${this.path}/login`, this.Login);
@@ -20,19 +19,19 @@ export default class Authentication {
 		this.router.get(`${this.path}/logout`, AuthMiddleware, this.Signout);
 	}
 
-	private async Login(req: Request, res: Response): Promise<void> {
+	private async Login(req, res) {
 		return await res.render('login');
 	}
 
-	private async Signin(req: Request, res: Response): Promise<Response> {
+	private async Signin(req, res) {
 		return res.json(req.body);
 	}
 
-	private async Register(req: Request, res: Response): Promise<void> {
+	private async Register(req, res) {
 		return await res.render('register');
 	}
 
-	private async Signup(req: RequestAuth, res: Response): Promise<void | Response> {
+	private async Signup(req, res) {
 		const { name, email, password, gender, addressOne, addressTwo, province, zipcode } = req.body;
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
@@ -73,7 +72,7 @@ export default class Authentication {
 		} catch (err) {}
 	}
 
-	private async Signout(req: Request, res: Response): Promise<void> {
+	private async Signout(req, res) {
 		await res.clearCookie('authorization');
 		return res.redirect('/');
 	}

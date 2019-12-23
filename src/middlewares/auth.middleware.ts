@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 
-async function authMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
+async function authMiddleware(req, res, next) {
 	const token = req.cookies.authorization;
 	if (!token) {
 		return res.redirect('/');

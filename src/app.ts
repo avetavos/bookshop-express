@@ -1,11 +1,10 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import Controller from './interfaces/controller.interface';
 import 'dotenv/config';
 
 export default class App {
-	public app: express.Application;
-	constructor(controllers: Controller[]) {
+	public app;
+	constructor(controllers) {
 		this.app = express();
 		this.initializeDatabase();
 		this.initializeMiddlewares();
@@ -14,22 +13,22 @@ export default class App {
 		this.initializeTemplate();
 	}
 
-	private initializeMiddlewares(): void {
+	private initializeMiddlewares() {
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: true }));
 	}
 
-	private initializeAssets(): void {
+	private initializeAssets() {
 		this.app.use('/', express.static('public'));
 		this.app.use(express.static('views'));
 	}
 
-	private initializeTemplate(): void {
+	private initializeTemplate() {
 		this.app.set('view engine', 'pug');
 	}
 
-	private initializeControllers(controllers: Controller[]): void {
-		this.app.get('/', (req: Request, res: Response): void => {
+	private initializeControllers(controllers) {
+		this.app.get('/', (req, res) => {
 			return res.redirect('/auth/login');
 		});
 		controllers.forEach(controller => {
@@ -37,7 +36,7 @@ export default class App {
 		});
 	}
 
-	private async initializeDatabase(): Promise<void> {
+	private async initializeDatabase() {
 		const { DB_HOST, DB_USER, DB_PASSWORD } = process.env;
 		await mongoose.connect(`mongodb://${DB_USER}:${DB_PASSWORD}${DB_HOST}`, {
 			useNewUrlParser: true,
@@ -47,7 +46,7 @@ export default class App {
 		console.log(`Database has connected`);
 	}
 
-	public listen(): void {
+	public listen() {
 		this.app.listen(process.env.PORT, () => {
 			console.log(`Application listened on port ${process.env.PORT}`);
 		});
