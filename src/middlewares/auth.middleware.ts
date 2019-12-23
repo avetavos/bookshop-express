@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 
 async function authMiddleware(req, res, next) {

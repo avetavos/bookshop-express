@@ -1,4 +1,5 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
+import Profile from '../interfaces/profile.interface';
 
 const ProfileSchema = new Schema({
 	user: {
@@ -29,6 +30,6 @@ const ProfileSchema = new Schema({
 	}
 });
 
-const ProfileModel = model('profile', ProfileSchema);
+const ProfileModel = model<Document & Profile>('profile', ProfileSchema);
 
 export default ProfileModel;
