@@ -1,5 +1,23 @@
 @import 'https://bootswatch.com/4/cosmo/bootstrap.min.css';
 
 .bg-opacity-dark {
-	background-color: rgba(55, 58, 60, 0.5);
+	background-color: rgba(55, 58, 60, 0.8);
+}
+
+.landing-body {
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../img/landing.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.landing-card {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.alert-errors {
+	position: absolute;
+	right: 0;
+	padding: 10px;
 }

@@ -1,15 +1,15 @@
-import cookieParser from 'cookie-parser';
-import express from 'express';
-import mongoose, { mongo } from 'mongoose';
+import express, { Request, Response } from 'express';
+import mongoose from 'mongoose';
+import Controller from './interfaces/controller.interface';
 import 'dotenv/config';
 
 export default class App {
 	public app: express.Application;
-	constructor() {
+	constructor(controllers: Controller[]) {
 		this.app = express();
 		this.initializeDatabase();
 		this.initializeMiddlewares();
-		this.initializeControllers();
+		this.initializeControllers(controllers);
 		this.initializeAssets();
 		this.initializeTemplate();
 	}
@@ -17,7 +17,6 @@ export default class App {
 	private initializeMiddlewares(): void {
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: true }));
-		this.app.use(cookieParser());
 	}
 
 	private initializeAssets(): void {
@@ -29,14 +28,20 @@ export default class App {
 		this.app.set('view engine', 'pug');
 	}
 
-	private initializeControllers(): void {
-		this.app.get('/', (req, res) => res.render('index'));
+	private initializeControllers(controllers: Controller[]): void {
+		this.app.get('/', (req: Request, res: Response): void => {
+			return res.redirect('/auth/login');
+		});
+		controllers.forEach(controller => {
+			this.app.use('/', controller.router);
+		});
 	}
 
 	private async initializeDatabase(): Promise<void> {
 		const { DB_HOST, DB_USER, DB_PASSWORD } = process.env;
 		await mongoose.connect(`mongodb://${DB_USER}:${DB_PASSWORD}${DB_HOST}`, {
 			useNewUrlParser: true,
+			useCreateIndex: true,
 			useUnifiedTopology: true
 		});
 		console.log(`Database has connected`);
